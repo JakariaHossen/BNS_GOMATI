@@ -11,9 +11,9 @@
       --dark-1: #0a0a0a;
       --dark-2: #111111;
       --dark-3: #1a1a1a;
-      --neon-pink: #ff2a6d;
-      --neon-blue: #05d9e8;
-      --neon-purple: #d300c5;
+      --neon-pink: #2016f3;
+      --neon-blue: #e51717;
+      --neon-purple: #d3a600;
       --glow: 0 0 10px rgba(5, 217, 232, 0.7), 0 0 20px rgba(255, 42, 109, 0.5);
     }
 
@@ -79,14 +79,24 @@
     .logo {
       font-size: 2rem;
       font-weight: 700;
-      background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+      background: linear-gradient(90deg, #f8a418, #ff2a6d);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: var(--glow);
       letter-spacing: 2px;
+      position: relative;
     }
 
+    .logo::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, #f8a418, #ff2a6d);
+      box-shadow: 0 0 8px rgba(248, 164, 24, 0.6);
+    }
     /* ===== MAIN CONTENT ===== */
     .main-content {
       display: flex;
@@ -163,17 +173,22 @@
     }
 
     /* ===== COUNTDOWN ITEMS ===== */
+
     .countdown-item {
       background: rgba(10, 10, 10, 0.7);
       border-radius: 10px;
       padding: 1rem;
+      padding-top: .3rem;
+      padding-bottom: 0.3rem;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
       /* Slightly smaller padding */
-      min-width: 80px;
+      min-width: 100px;
       /* Smaller min-width for mobile */
       flex-shrink: 1;
       /* Allow shrinking */
       border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 15px rgba(5, 217, 232, 0.2);
+      box-shadow: 0 0 10px rgba(5, 217, 232, 0.2);
       backdrop-filter: blur(5px);
       transition: all 0.3s ease;
       position: relative;
@@ -356,7 +371,10 @@
 
       .countdown-item {
         min-width: 80px;
-        padding: 1rem;
+        padding-top: .5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
       }
 
       .countdown-value {
@@ -466,7 +484,7 @@
       <div class="progress-container fade-in delay-3">
         <div class="progress-text">
           <span>SYSTEM INITIALIZATION</span>
-          <span>75%</span>
+          <span>93%</span>
         </div>
         <div class="progress-bar">
           <div class="progress-fill"></div>
@@ -487,7 +505,7 @@
 
     <footer class="fade-in delay-4">
       <p>
-        &copy; 2025 BNS GOMATI | All systems operational
+        &copy; 2025 BNS GOMATI | All rights reserved
       </p>
     </footer>
   </div>
@@ -497,7 +515,14 @@
 
   <script>
     // ===== COUNTDOWN TIMER =====
-    const launchDate = new Date(2025, 4, 14, 0, 0, 0).getTime();
+    const year = 2025;
+    const month = 4; // May (1=Jan, 12=Dec)
+    const day = 14;
+    const hours = 11; // 11 AM
+    const minutes = 0;
+    const seconds = 0;
+
+    const launchDate = new Date(year, month - 1, day, hours, minutes, seconds).getTime();
 
     const countdown = setInterval(() => {
       const now = new Date().getTime();
