@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BNS GOMATI | DOCKING 2025</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== CYBERPUNK DARK THEME ===== */
+:root {
+      --dark-1: #0a0a0a;
+      --dark-2: #111111;
+      --dark-3: #1a1a1a;
+      --neon-pink: #ff2a6d;
+      --neon-blue: #05d9e8;
+      --neon-purple: #d300c5;
+      --glow: 0 0 10px rgba(5, 217, 232, 0.7), 0 0 20px rgba(255, 42, 109, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Rajdhani', 'Orbitron', sans-serif;
+    }
+
+    @font-face {
+      font-family: 'Rajdhani';
+      src: url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+    }
+
+    body {
+      background-color: var(--dark-1);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    /* ===== NOISE OVERLAY ===== */
+    .noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ===== PARTICLE BACKGROUND ===== */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: var(--glow);
+      letter-spacing: 2px;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 80vh;
+      padding: 2rem 0;
+    }
+
+    /* ===== GLITCH TEXT EFFECT ===== */
+    h1 {
+      font-size: 4.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: glitch 2s infinite alternate;
+    }
+
+    @keyframes glitch {
+      0% {
+        text-shadow: 0.05em 0 0 var(--neon-blue), -0.05em -0.025em 0 var(--neon-pink);
+      }
+      14% {
+        text-shadow: 0.05em 0 0 var(--neon-blue), -0.05em -0.025em 0 var(--neon-pink);
+      }
+      15% {
+        text-shadow: -0.05em -0.025em 0 var(--neon-blue), 0.025em 0.025em 0 var(--neon-pink);
+      }
+      49% {
+        text-shadow: -0.05em -0.025em 0 var(--neon-blue), 0.025em 0.025em 0 var(--neon-pink);
+      }
+      50% {
+        text-shadow: 0.025em 0.05em 0 var(--neon-blue), 0.05em 0 0 var(--neon-pink);
+      }
+      99% {
+        text-shadow: 0.025em 0.05em 0 var(--neon-blue), 0.05em 0 0 var(--neon-pink);
+      }
+      100% {
+        text-shadow: -0.025em 0 0 var(--neon-blue), -0.025em -0.025em 0 var(--neon-pink);
+      }
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      max-width: 700px;
+    }
+    /* ===== COUNTDOWN CONTAINER ===== */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      /* Reduced gap for smaller screens */
+      margin: 3rem 0;
+      flex-wrap: nowrap;
+      /* Prevent wrapping */
+      overflow-x: auto;
+      /* Allow horizontal scroll if needed */
+      padding-bottom: 10px;
+      /* Space for scrollbar */
+      -webkit-overflow-scrolling: touch;
+      /* Smooth scroll on mobile */
+      scrollbar-width: none;
+      /* Hide scrollbar (Firefox) */
+    }
+
+    .countdown::-webkit-scrollbar {
+      display: none;
+      /* Hide scrollbar (Chrome/Safari) */
+    }
+
+    /* ===== COUNTDOWN ITEMS ===== */
+    .countdown-item {
+      background: rgba(10, 10, 10, 0.7);
+      border-radius: 10px;
+      padding: 1rem;
+      /* Slightly smaller padding */
+      min-width: 80px;
+      /* Smaller min-width for mobile */
+      flex-shrink: 1;
+      /* Allow shrinking */
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 15px rgba(5, 217, 232, 0.2);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Adjust font sizes for mobile */
+    @media (max-width: 768px) {
+      .countdown-value {
+        font-size: 1.8rem !important;
+      }
+      .countdown-label {
+        font-size: 0.7rem !important;
+      }
+    }
+
+    .countdown-item::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+      to bottom right,
+      transparent, transparent, transparent,
+      rgba(255, 42, 109, 0.1), transparent
+      );
+      transform: rotate(30deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        transform: rotate(30deg) translate(-10%, -10%);
+      }
+      100% {
+        transform: rotate(30deg) translate(10%, 10%);
+      }
+    }
+
+    .countdown-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(5, 217, 232, 0.4);
+    }
+
+    .countdown-value {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ===== NEON PROGRESS BAR ===== */
+    .progress-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 75%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+      position: relative;
+      animation: progressGlow 2s infinite alternate;
+    }
+
+    @keyframes progressGlow {
+      0% {
+        box-shadow: 0 0 5px var(--neon-pink);
+      }
+      100% {
+        box-shadow: 0 0 15px var(--neon-blue);
+      }
+    }
+
+    /* ===== NEON BUTTON ===== */
+    .cta-button {
+      background: transparent;
+      color: white;
+      border: 2px solid var(--neon-blue);
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(5, 217, 232, 0.3), transparent);
+      transition: all 0.5s ease;
+    }
+
+    .cta-button:hover {
+      background: rgba(5, 217, 232, 0.1);
+      box-shadow: 0 0 15px rgba(5, 217, 232, 0.4);
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    /* ===== SOCIAL ICONS ===== */
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .social-link {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--neon-blue);
+      transform: translateY(-3px);
+      text-shadow: 0 0 10px rgba(5, 217, 232, 0.7);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 1.5rem 0;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+      }
+
+      .countdown-item {
+        min-width: 80px;
+        padding: 1rem;
+      }
+
+      .countdown-value {
+        font-size: 2rem;
+      }
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+    .delay-4 {
+      animation-delay: 0.8s;
+    }
+  </style>
+</head>
+<body>
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
+
+  <!-- PARTICLE BACKGROUND -->
+  <div id="particles-js"></div>
+
+  <div class="container">
+    <header>
+      <div class="logo">
+        BNS GOMATI
+      </div>
+      <div class="language-selector">
+        <select style="background: var(--dark-2); color: white; border: 1px solid rgba(255,255,255,0.1); padding: 0.3rem; border-radius: 4px;">
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+          <option value="fr">FR</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <h1 class="fade-in">COMING SOON</h1>
+      <p class="tagline fade-in delay-1">
+        We're building something revolutionary. Stay tuned for the launch.
+      </p>
+
+      <div class="countdown fade-in delay-2">
+        <div class="countdown-item">
+          <div class="countdown-value" id="days">
+            00
+          </div>
+          <div class="countdown-label">
+            Days
+          </div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="hours">
+            00
+          </div>
+          <div class="countdown-label">
+            Hours
+          </div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="minutes">
+            00
+          </div>
+          <div class="countdown-label">
+            Minutes
+          </div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="seconds">
+            00
+          </div>
+          <div class="countdown-label">
+            Seconds
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-container fade-in delay-3">
+        <div class="progress-text">
+          <span>SYSTEM INITIALIZATION</span>
+          <span>75%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+
+      <button class="cta-button fade-in delay-4">
+        <i class="fas fa-envelope"></i> NOTIFY ME
+      </button>
+
+      <div class="social-links fade-in delay-4">
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </main>
+
+    <footer class="fade-in delay-4">
+      <p>
+        &copy; 2025 BNS GOMATI | All systems operational
+      </p>
+    </footer>
+  </div>
+
+  <!-- PARTICLE JS -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+  <script>
+    // ===== COUNTDOWN TIMER =====
+    const launchDate = new Date(2025, 4, 14, 0, 0, 0).getTime();
+
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = Math.floor(hours).toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = Math.floor(minutes).toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.querySelector('.countdown').innerHTML = `
+        <div class="countdown-item" style="background: var(--neon-blue); color: black;">
+        <div class="countdown-value">WE'RE LIVE!</div>
+        </div>
+        `;
+      }
+    }, 1000);
+
+    // ===== PARTICLES CONFIG =====
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#05d9e8"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": true
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#05d9e8",
+          "opacity": 0.3,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          }
+        },
+        "modes": {
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // ===== SCROLL ANIMATIONS =====
+    document.querySelectorAll('.fade-in').forEach(el => {
+      el.style.opacity = '0';
+    });
+
+    const animateOnScroll = () => {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = (rect.top <= window.innerHeight * 0.8);
+        if (isVisible) el.style.animation = `fadeIn 1s forwards ${el.classList.contains('delay-1') ? '0.2s': el.classList.contains('delay-2') ? '0.4s': el.classList.contains('delay-3') ? '0.6s': '0.8s'}`;
+      });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    animateOnScroll(); // Run once on load
+
+    // ===== BUTTON HOVER EFFECT =====
+    document.querySelector('.cta-button').addEventListener('mouseenter', function() {
+      this.style.boxShadow = '0 0 20px rgba(5, 217, 232, 0.6)';
+    });
+
+    document.querySelector('.cta-button').addEventListener('mouseleave', function() {
+      this.style.boxShadow = '0 0 15px rgba(5, 217, 232, 0.4)';
+    });
+
+    // ===== GLITCH EFFECT ON HOVER =====
+    document.querySelector('h1').addEventListener('mouseenter', function() {
+      this.style.animation = 'glitch 0.5s infinite alternate';
+    });
+
+    document.querySelector('h1').addEventListener('mouseleave', function() {
+      this.style.animation = 'glitch 2s infinite alternate';
+    });
+  </script>
+</body>
+</html>
