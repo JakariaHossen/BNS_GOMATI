@@ -1,0 +1,38 @@
+/* css/login.css - FIXED FOR BOTH INPUTS */
+/* ... (keep all previous CSS rules until .input-group) ... */
+
+/* UNIVERSAL INPUT STYLING */
+.input-group input {
+  width: 100%;
+  padding: 16px 48px 16px 16px; /* Uniform padding */
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-sizing: border-box; /* Crucial for padding consistency */
+}
+
+/* PASSWORD-SPECIFIC ADJUSTMENTS */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 48px; /* Space for eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+/* ... (rest of your existing CSS remains the same) ... */

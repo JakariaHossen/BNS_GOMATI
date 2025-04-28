@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BNS Gomati Docking Works</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="company-name">BNS GOMATI DOCKING 2025</div>
+        <div class="header-icons">
+            <a href="gallery.html" target="_blank" class="header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+            </a>
+            <a href="https://example.com/upload" target="_blank" class="header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+            </a>
+            <div class="header-icon" id="menu-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Menu Popup -->
+        <div class="menu-popup" id="menu-popup">
+            <div class="menu-item">Setting</div>
+            <div class="menu-item">Contact</div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="gallery-container">
+        <!-- Main Image -->
+        <div class="main-image-container">
+            <div class="main-image-wrapper">
+                <img id="main-image" class="main-image" alt="Work" loading="lazy">
+            </div>
+        </div>
+        
+        <!-- Info Card -->
+        <div class="info-card">
+            <h2 id="work-title"></h2>
+            <p id="work-description"></p>
+        </div>
+        
+        <!-- Optimized Thumbnails -->
+        <div class="thumbnails-wrapper">
+            <div class="thumbnails-header">
+                <div class="thumbnails-title">Project Gallery</div>
+                <div class="thumbnails-count" id="thumbnails-count">0/0</div>
+            </div>
+            <div class="thumbnails-container" id="thumbnails">
+                <!-- Thumbnails will be added by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Work Plan Table -->
+        <div class="work-plan-container">
+            <div class="work-plan-header">
+                <div class="work-plan-title">Work Plan</div>
+                <div style="display: flex;">
+                    <div class="work-plan-nav">
+                        <button class="work-plan-nav-btn" id="prev-day-btn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="work-plan-nav-btn" id="next-day-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="download-btn" id="download-btn" title="Download as PDF">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="work-plan-scroll" id="work-plan-scroll">
+                <!-- Work plan days will be added by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Priority Notes Table -->
+        <div class="notes-container">
+            <div class="notes-header">
+                <div class="notes-title">Priority Notes</div>
+            </div>
+            <div class="notes-list" id="notes-list">
+                <!-- Notes will be added by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p>© 2023 BNS Gomati. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Note Info Popup -->
+    <div class="note-popup" id="note-popup">
+        <div class="note-popup-content">
+            <button class="note-popup-close" id="note-popup-close">&times;</button>
+            <div class="note-popup-title" id="note-popup-title">Note Details</div>
+            <div class="note-popup-text" id="note-popup-text"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
