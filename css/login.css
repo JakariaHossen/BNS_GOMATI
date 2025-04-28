@@ -1,0 +1,238 @@
+/* css/login.css - FINAL PERFECT VERSION */
+:root {
+  --primary: #4361ee;
+  --primary-hover: #3a56d4;
+  --glass: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --text: #2b2d42;
+  --text-light: #8d99ae;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  color: var(--text);
+}
+
+.login-card {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(69,31,135,0.15);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Header Animation */
+.header-image {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  background: linear-gradient(45deg, #5383f1 0%, #2796ffb8 100%);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.security-animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.lock-icon {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  color: white;
+  animation: float 3s ease-in-out infinite;
+}
+
+.shield-icon {
+  position: absolute;
+  left: 30%;
+  top: 65%;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.7);
+  animation: bounce 2.5s ease-in-out infinite 0.5s;
+}
+
+.key-icon {
+  position: absolute;
+  left: 70%;
+  top: 65%;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.7);
+  animation: spin 4s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-10px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Login Content */
+.login-content {
+  padding: 0 32px 24px;
+}
+
+h2 {
+  color: var(--text);
+  margin: 0 0 25px 0;
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+}
+
+/* Input Fields - PERFECTLY ALIGNED */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 18px 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+}
+
+/* Password-specific adjustments */
+.password-wrapper input {
+  padding-right: 48px; /* Extra space for eye icon */
+}
+
+.input-group label {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  color: var(--text-light);
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: 5px;
+  font-size: 11px;
+  color: var(--primary);
+}
+
+/* Password Toggle */
+.toggle-password {
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 4px;
+  z-index: 2;
+}
+
+.toggle-password:hover {
+  color: var(--text);
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 16px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#login-btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(67, 97, 238, 0.2);
+}
+
+#login-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(67, 97, 238, 0.25);
+}
+
+.contact-btn {
+  background: white;
+  color: var(--primary);
+  border: 1.5px solid rgba(67, 97, 238, 0.2);
+}
+
+.contact-btn:hover {
+  background: rgba(67, 97, 238, 0.05);
+  border-color: var(--primary);
+}
+
+/* Error Message */
+#error-message {
+  font-size: 13px;
+  color: #ef233c;
+  margin-top: 12px;
+  text-align: center;
+  min-height: 18px;
+  font-weight: 500;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .login-content {
+    padding: 0 24px 24px;
+  }
+  
+  .header-image {
+    margin-bottom: 15px;
+  }
+  
+  .input-group input {
+    padding: 16px 12px;
+  }
+  
+  .password-wrapper input {
+    padding-right: 44px;
+  }
+}

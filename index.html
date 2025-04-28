@@ -2,993 +2,197 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1024">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="image/favicon.ico" style="border-radius: 50%" type="image/icon type">
   <title>BNS GOMATI</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-:root {
-      --glass-color: rgba(80,143,136,0.373);
-      --header-radius: 0px;
-      /* Changed to 0 for no rounded corners */
-      --header-height: 70px;
-      --blur-amount: 15px;
-      --border-thickness: 1px;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      color: #eee;
-      font-family: Poppins;
-      font-size: 12px;
-      min-width: 1024px;
-  overflow-x: auto;
-    }
-
-    /* Enhanced Glass-Morphism Header - Now Sticky */
-    header {
-      width: 100%;
-      /* Full width */
-      margin: 0;
-      /* Remove any margin */
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      /* Changed to fixed */
-      top: 0;
-      /* Stick to top */
-      left: 0;
-      /* Stick to left */
-      z-index: 1000;
-      /* Higher z-index */
-      padding: 0 30px;
-      background: var(--glass-color);
-      backdrop-filter: blur(var(--blur-amount));
-      -webkit-backdrop-filter: blur(var(--blur-amount));
-      border-radius: 0;
-      /* No rounded corners */
-      border-bottom: var(--border-thickness) solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
-    }
-
-    .header-title {
-      font-size: 1.8em;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-      letter-spacing: 1px;
-    }
-
-    .header-title span {
-      color: #f1683a;
-      margin-left: 10px;
-    }
-
-    .header-controls {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      margin-right: 60px;
-    }
-    .header-controls a {
-      color: #fff;
-      font-size: 1em;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      padding: 10px 18px;
-      border-radius: 30px;
-      height: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(102,148,132,0.383);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .header-controls a:hover {
-      background: rgba(241, 104, 58, 0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(241, 104, 58, 0.2);
-    }
-
-    .admin-controls i {
-      font-size: 1.2em;
-    }
-
-    /* Rest of your existing CSS remains exactly the same */
-    .carousel {
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-    .carousel .list .item {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0 0 0 0;
-    }
-    .carousel .list .item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .carousel .list .item .content {
-      position: absolute;
-      top: 20%;
-      width: 1140px;
-      max-width: 80%;
-      left: 50%;
-      transform: translateX(-50%);
-      padding-right: 30%;
-      box-sizing: border-box;
-      color: #fff;
-      text-shadow: 0 5px 10px #0004;
-    }
-    .carousel .list .item .author {
-      font-weight: bold;
-      letter-spacing: 10px;
-    }
-    .carousel .list .item .title,
-    .carousel .list .item .topic {
-      font-size: 3.5em;
-      font-weight: bold;
-      line-height: 1.3em;
-    }
-    .carousel .list .item .topic {
-      color: #f1683a;
-    }
-    .carousel .list .item .buttons {
-      display: none;
-      /*
-      grid-template-columns: repeat(2, 130px);
-      grid-template-rows: 40px;
-      gap: 5px;
-      margin-top: 20px;
-      */
-    }
-    .carousel .list .item .buttons button {
-      border: none;
-      background-color: #eee;
-      letter-spacing: 3px;
-      font-family: Poppins;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .carousel .list .item .buttons button:nth-child(2) {
-      background-color: transparent;
-      border: 1px solid #fff;
-      color: #eee;
-    }
-    /* thumbail */
-    .thumbnail {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      width: max-content;
-      z-index: 100;
-      display: flex;
-      gap: 20px;
-    }
-    .thumbnail .item {
-      width: 130px;
-      height: 180px;
-      flex-shrink: 0;
-      position: relative;
-      cursor: pointer;
-    }
-    .thumbnail .item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 20px;
-    }
-    .thumbnail .item .content {
-      color: #fff;
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      right: 10px;
-    }
-    .thumbnail .item .content .title {
-      font-weight: 500;
-    }
-    .thumbnail .item .content .description {
-      font-weight: 300;
-      display: none;
-    }
-    /* arrows */
-    .arrows {
-      position: absolute;
-      top: 80%;
-      right: 52%;
-      z-index: 100;
-      width: 300px;
-      max-width: 30%;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .arrows button {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #eee4;
-      border: none;
-      color: #fff;
-      font-family: monospace;
-      font-weight: bold;
-      transition: .5s;
-      cursor: pointer;
-    }
-    .arrows button:hover {
-      background-color: #fff;
-      color: #000;
-    }
-
-    /* animation */
-    .carousel .list .item:nth-child(1) {
-      z-index: 1;
-    }
-
-    /* animation text in first item */
-    .carousel .list .item:nth-child(1) .content .author,
-    .carousel .list .item:nth-child(1) .content .title,
-    .carousel .list .item:nth-child(1) .content .topic,
-    .carousel .list .item:nth-child(1) .content .des,
-    .carousel .list .item:nth-child(1) .content .buttons
-    {
-      transform: translateY(50px);
-      filter: blur(20px);
-      opacity: 0;
-      animation: showContent .5s 1s linear 1 forwards;
-    }
-    @keyframes showContent {
-      to {
-        transform: translateY(0px);
-        filter: blur(0px);
-        opacity: 1;
-      }
-    }
-    .carousel .list .item:nth-child(1) .content .title {
-      animation-delay: .3s!important;
-    }
-    .carousel .list .item:nth-child(1) .content .topic {
-      animation-delay: .3s!important;
-    }
-    .carousel .list .item:nth-child(1) .content .des {
-      animation-delay: .3s!important;
-    }
-    .carousel .list .item:nth-child(1) .content .buttons {
-      animation-delay: .3s!important;
-    }
-    /* create animation when next click */
-    .carousel.next .list .item:nth-child(1) img {
-      width: 150px;
-      height: 220px;
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      border-radius: 30px;
-      animation: showImage .5s linear 1 forwards;
-    }
-    @keyframes showImage {
-      to {
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-      }
-    }
-
-    .carousel.next .thumbnail .item:nth-last-child(1) {
-      overflow: hidden;
-      animation: showThumbnail .5s linear 1 forwards;
-    }
-    .carousel.prev .list .item img {
-      z-index: 100;
-    }
-
-    /*
-    @keyframes showThumbnail {
-      from {
-        width: 0;
-        opacity: 0;
-      }
-    }
-    .carousel.next .thumbnail {
-      animation: effectNext 1s linear 1 forwards;
-    }
-
-    @keyframes effectNext {
-      from {
-        transform: translateX(150px);
-      }
-    }
-
-    /* running time */
-    .carousel .time {
-      position: absolute;
-      z-index: 1000;
-      width: 0%;
-      height: 3px;
-      background-color: #f1683a;
-      left: 0;
-    }
-
-    .carousel.next .time,
-    .carousel.prev .time {
-      animation: runningTime 3s linear 1 forwards;
-    }
-    @keyframes runningTime {
-      from {
-        width: 100%
-      }
-      to {
-        width: 0
-      }
-    }
-
-    /* prev click */
-    .carousel.prev .list .item:nth-child(2) {
-      z-index: 2;
-    }
-
-    .carousel.prev .list .item:nth-child(2) img {
-      animation: outFrame 0.5s linear 1 forwards;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-    @keyframes outFrame {
-      to {
-        width: 150px;
-        height: 220px;
-        bottom: 50px;
-        left: 50%;
-        border-radius: 20px;
-      }
-    }
-
-    .carousel.prev .thumbnail .item:nth-child(1) {
-      overflow: hidden;
-      opacity: 0;
-      animation: showThumbnail .5s linear 1 forwards;
-    }
-    .carousel.next .arrows button,
-    .carousel.prev .arrows button {
-      pointer-events: none;
-    }
-    .carousel.prev .list .item:nth-child(2) .content .author,
-    .carousel.prev .list .item:nth-child(2) .content .title,
-    .carousel.prev .list .item:nth-child(2) .content .topic,
-    .carousel.prev .list .item:nth-child(2) .content .des,
-    .carousel.prev .list .item:nth-child(2) .content .buttons
-    {
-      animation: contentOut 1.5s linear 1 forwards!important;
-    }
-
-    @keyframes contentOut {
-      to {
-        transform: translateY(-150px);
-        filter: blur(20px);
-        opacity: 0;
-      }
-    }
-    @media screen and (max-width: 678px) {
-      .carousel .list .item .content {
-        padding-right: 0;
-      }
-      .carousel .list .item .content .title {
-        font-size: 30px;
-      }
-
-      header {
-        height: 60px;
-        padding: 0 15px;
-      }
-
-      .header-title {
-        font-size: 1.4em;
-      }
-
-      .admin-controls {
-        gap: 12px;
-      }
-
-      .admin-controls a {
-        padding: 6px;
-        font-size: 0.9em;
-      }
-
-      .admin-controls a span {
-        display: none;
-      }
-    }
-
-    /* Make buttons always clickable */
-    .arrows button {
-      pointer-events: auto !important;
-    }
-
-    /* Remove the pointer-events none from these classes */
-    .carousel.next .arrows button,
-    .carousel.prev .arrows button {
-      pointer-events: auto !important;
-    }
-
-    .des {
-      font-size: 1.5em
-    }
-
-    footer {
-      padding: 30px 0;
-      border-top: 1px solid #222;
-    }
-
-    .footer-content p {
-      margin: 5px 0;
-    }
-
-    footer a {
-      color: #f1683a;
-      transition: color 0.3s ease;
-    }
-
-    footer a:hover {
-      color: #fff;
-    }
-
-    a {
-      text-decoration: none
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header>
-    <div class="header-title">
-      BNS GOMATI <span>DOCKING 2025</span>
+
+<!-- BODY is hidden initially -->
+<body id="protected-body" hidden>
+
+  <!--full Landing Page content starts here -->
+  <header class="header">
+    <div class="company-name">
+      BNS GOMATI
     </div>
-    <div class="header-controls">
-      <a href="gallery.html" target="_blank" title="View Gallery">
-        <i class="fas fa-images"></i>
-        <span>Gallery</span>
+    <div class="header-icons">
+      <a href="gallery.html" target="_blank" class="header-icon">
+        <!-- Gallery Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+</svg>
       </a>
-      <a href="#" onclick="handleLogout()" title="Logout">
-        <i class="fas fa-sign-out-alt"></i>
-        <span>Logout</span>
+      <a href="https://example.com/upload" target="_blank" class="header-icon">
+        <!-- Upload Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+</svg>
       </a>
+      <div class="header-icon" id="menu-btn">
+        <!-- Menu Icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+</svg>
+      </div>
+    </div>
+    <div class="menu-popup" id="menu-popup">
+      <div class="menu-item">Index</div>
+      <div class="menu-item">Account</div>
+      <div class="menu-item">Settings</div>
+      <div class="menu-item">Contact</div>
+      <div class="menu-item">
+<button id="logout-btn">Logout</button>
+      </div>
     </div>
   </header>
 
-  <!-- The rest of your carousel HTML remains exactly the same -->
-  <div class="carousel">
-    <!-- list item -->
-    <div class="list">
-      <div class="item">
-        <img src="image/img1.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            No Room for Error
-          </div>
-          <div class="des">
-            The ocean doesn't forgive. Neither do we.  
-One mistake here sinks sailors later.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img2.webp" loadin="lazy">
-        <div class="content">
-          <div class="title">
-            The Last Port
-          </div>
-          <div class="des">
-            Where legends come to heal.
-            Where the next legend begins.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img3.webp" loadin="lazy">
-        <div class="content">
-          <div class="title">
-            The Dry Dock Gospel
-          </div>
-          <div class="des">
-            Here, there are no flags, no fanfare.
-            Just the holy trinity: steel, sweat, and the relentless fight against time.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img4.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Iron Resurrection
-          </div>
-          <div class="des">
-            They say ships are made of steel.  
-    We know better—they’re made of second chances.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img5.webp" loading="lazy ">
-        <div class="content">
-          <div class="title">
-            Docklight Prophets
-          </div>
-          <div class="des">
-            They call it maintenance. We know better.
-            This is alchemy—turning rust back into readiness.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img6.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Hull Truths
-          </div>
-          <div class="des">
-            Paint lies. Rust doesn’t.
-            In the dock, every weakness is laid bare—and met with fire.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img7.webp">
-        <div class="content">
-          <div class="title">
-            The Unseen Fleet
-          </div>
-          <div class="des">
-            For every ship that sails, there are ten hands that rebuilt her.
-            This is our armada: cranes, grit, and ghost shifts.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img8.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Sparks & Sacrifice
-          </div>
-          <div class="des">
-            Every weld is a vow etched in fire.
-            “Not on my watch.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img9.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            The Weight of Water
-          </div>
-          <div class="des">
-            We lift what crushes lesser men.
-            Not with muscles—with mathematics and madness.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img10.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            The Weight of Readiness
-          </div>
-          <div class="des">
-            Tons of steel suspended in air.
-            One flaw undetected, and the ocean claims its due
-          </div>
-        </div>
-      </div>
-      <!-- Add these after your existing 10 items -->
-      <div class="item">
-        <img src="image/img11.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            From Dry to Destiny
-          </div>
-          <div class="des">
-            Today’s sweat is tomorrow’s seaworthiness.
-            No fanfare, just the quiet pride of sending her back stronger.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img12.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            No Glory Here
-          </div>
-          <div class="des">
-            No medals for midnight welds.  
-Just the knowledge that our work keeps sailors alive.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img13.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Weight of the Fleet
-          </div>
-          <div class="des">
-            Every ship we send back stronger  
-is a thousand sons coming home safer.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img14.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            The Alignment
-          </div>
-          <div class="des">
-            Lasers don’t lie. Tide tables don’t negotiate.  
-    In the dry, there’s only one truth: perfection.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img15.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            The Unseen War
-          </div>
-          <div class="des">
-            No medals for scraping barnacles.  
-   No glory for the midnight welds that hold the fleet together.
-          </div>
-        </div>
-      </div>
-      <!-- All your other items (2-15) remain exactly the same -->
-      <!-- ... -->
+  <div class="wrapper">
+    <!-- Main Content -->
+<div class="gallery-container">
+<!-- Main Image -->
+<div class="left-column-wrapper">
+<div class="main-image-container">
+<div class="main-image-wrapper">
+<img id="main-image" class="main-image" alt="Work 1" loading="lazy">
+</div>
+</div>
+<!-- Info Card -->
+<div class="info-card">
+<h2 id="work-title"></h2>
+<p id="work-description"></p>
+</div>
+</div>
+
+<!-- Optimized Thumbnails -->
+<div class="thumbnails-wrapper">
+<div class="thumbnails-header">
+<div class="thumbnails-title">
+Project Gallery
+</div>
+<div class="thumbnails-count" id="thumbnails-count">
+1/15
+</div>
+</div>
+<div class="thumbnails-container" id="thumbnails">
+<!-- Thumbnails will be added by JavaScript -->
+</div>
+</div>
+
+<div class="work-progress-container ">
+<div class="work-progress-header">
+<div class="work-progress-title">
+Work Progress
+</div>
+</div>
+<div class="work-progress-list" id="work-progress-list">
+<!-- Progress items will be added by JavaScript -->
+</div>
+</div>
+<!-- issue container -->
+<div class="issues-container">
+<div class="issues-header">
+<div class="issues-title">
+Major Issues
+</div>
+<a href="https://example.com/issues-info" target="_blank" class="issues-info-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+<circle cx="12" cy="12" r="10" />
+<line x1="12" y1="16" x2="12" y2="12" />
+<line x1="12" y1="8" x2="12.01" y2="8" />
+</svg>
+</a>
+</div>
+<div class="issues-list" id="issues-list">
+<!-- Issues will be added by JavaScript -->
+</div>
+</div>
+<!-- Work Plan Table -->
+<div class="work-plan-container">
+<div class="work-plan-header">
+<div class="work-plan-title">
+Work Plan
+</div>
+<div style="display: flex;">
+<div class="work-plan-nav">
+<button class="work-plan-nav-btn" id="prev-day-btn" disabled>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="15 18 9 12 15 6"></polyline>
+</svg>
+</button>
+<button class="work-plan-nav-btn" id="next-day-btn">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</button>
+</div>
+<button class="download-btn" id="download-btn" title="Download as PDF">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" y1="15" x2="12" y2="3"></line>
+</svg>
+</button>
+</div>
+</div>
+<div class="work-plan-scroll" id="work-plan-scroll">
+<!-- Work plan days will be added by JavaScript -->
+</div>
+</div>
+
+<!-- Priority Notes Table -->
+<div class="notes-container">
+<div class="notes-header">
+<div class="notes-title">
+Priority Notes
+</div>
+</div>
+<div class="notes-list" id="notes-list">
+<!-- Notes will be added by JavaScript -->
+</div>
+</div>
+<!-- events container -->
+<div class="events-container">
+<div class="events-header">
+<div class="events-title">
+Upcoming Events
+</div>
+</div>
+<div class="events-list" id="events-list">
+<!-- Events will be added by JavaScript -->
+</div>
+</div>
+</div>
+  </div>
+
+  <footer>
+    <p>© 2025 BNS GOMATI. All rights reserved.</p>
+  </footer>
+
+  <!-- Note Popup -->
+  <div class="note-popup" id="note-popup">
+    <div class="note-popup-content">
+      <button class="note-popup-close" id="note-popup-close">&times;</button>
+      <div class="note-popup-title" id="note-popup-title">Note Details</div>
+      <div class="note-popup-text" id="note-popup-text"></div>
     </div>
+  </div>
+<script type="module">
+import {
+supabase
+} from './auth.js';
 
-    <!-- thumbnail items -->
-    <div class="thumbnail">
-      <!-- All your thumbnails remain exactly the same -->
-      <div class="item active">
-        <img src="image/img1.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 1: Initial Docking
-          </div>
-          <div class="description">
-            Conducted initial assessment of docking area and prepared the necessary equipment for the docking procedure.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img2.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Blood, Sweat and Steel
-          </div>
-          <div class="description">
-            Blood, Sweat and Steel
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img3.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 3: Mooring System
-          </div>
-          <div class="description">
-            Inspected and tested all mooring equipment to ensure secure docking operations.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img4.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 4: Propeller Maintenance
-          </div>
-          <div class="description">
-            Conducted maintenance on the ship's propellers, including cleaning and inspection.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img5.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 5: Navigation Systems
-          </div>
-          <div class="description">
-            Updated and calibrated all navigation systems while in dock.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img6.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 6: Cargo Hold
-          </div>
-          <div class="description">
-            Completed inspection of all cargo holds and loading equipment.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img7.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 7: Safety Equipment
-          </div>
-          <div class="description">
-            Verified all safety equipment is operational and up to date with regulations.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img8.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 8: Engine Room
-          </div>
-          <div class="description">
-            Ships aren't repaired by machines.
-They're rebuilt by men with burn scars and tired eyes.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img9.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 9: Communication Systems
-          </div>
-          <div class="description">
-            Tested and updated all communication systems onboard.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img10.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 10: Final Review
-          </div>
-          <div class="description">
-            Completed final review of all docking procedures and prepared for undocking.
-          </div>
-        </div>
-      </div>
-      <!-- Add these after your existing 10 thumbnails -->
-      <div class="item">
-        <img src="image/img11.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            No Glory Here
-          </div>
-          <div class="description">
-            No medals for midnight welds.  
-Just the knowledge that our work keeps sailors alive.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img12.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Sea vs Steel
-          </div>
-          <div class="description">
-            This is the frontline.  
-Where saltwater attacks and we fight back with torches and grit.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img13.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Weight of the Fleet
-          </div>
-          <div class="description">
-            Every ship we send back stronger  
-is a thousand sons coming home safer.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img14.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            The Alignment
-          </div>
-          <div class="description">
-            Lasers don’t lie. Tide tables don’t negotiate.  
-    In the dry, there’s only one truth: perfection.
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <img src="image/img15.webp" loading="lazy">
-        <div class="content">
-          <div class="title">
-            Day 15: Final Completion
-          </div>
-          <div class="description">
-            Final tasks completed and preparations for departure.
-          </div>
-        </div>
-      </div>
-      <!-- ... -->
-    </div>
+const logoutBtn = document.getElementById('logout-btn');
+logoutBtn.addEventListener('click', async () => {
+await supabase.auth.signOut();
+window.location.href = 'login.html';
+});
+</script>
+  <!-- Load regular scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <!-- Load the injector LAST -->
+  <script type="module" src="injector.js"></script>
 
-    <!-- next prev -->
-    <div class="arrows">
-      <button id="prev"><</button>
-        <button id="next">></button>
-      </div>
-      <!-- time running -->
-      <div class="time"></div>
-    </div>
-
-    <footer>
-      <div class="footer-content" style="max-width: 1140px; margin: 0 auto; padding: 20px; text-align: center;">
-        <p style="margin: 10px 0; color: #666; font-size: 1em;">
-          © 2025 BNS GOMATI . All rights reserved.
-        </p>
-        <p style="margin: 10px 0; color: #666; font-size: 1em;">
-          All content on this site is protected and strictly prohibited<br>from being modified, redistributed, or used for commercial purposes without formal authorization.<br> Violations may result in legal action.
-        </p>
-        <p style="margin: 10px 0; color: #666; font-size: 0.92em;">
-          Developed UNIT ❤ BNS GOMATI
-        </p>
-      </div>
-    </footer>
-
-    <script>
-      // Add logout handler
-      function handleLogout() {
-        console.log("Logout clicked");
-        alert("Logout functionality will be implemented here later.");
-        // You can implement actual logout later
-        // window.location.href = "logout.html";
-      }
-
-      // Your existing carousel JavaScript remains exactly the same
-      let nextDom = document.getElementById('next');
-      let prevDom = document.getElementById('prev');
-      let carouselDom = document.querySelector('.carousel');
-      let SliderDom = carouselDom.querySelector('.carousel .list');
-      let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
-      let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
-      let timeDom = document.querySelector('.carousel .time');
-
-      let timeRunning = 2000;
-      let timeAutoNext = 3000;
-      let runTimeOut;
-      let runNextAuto = setTimeout(() => {
-        nextDom.click();
-      }, timeAutoNext);
-
-      function showSlider(type) {
-        let SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
-        let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
-
-        if (type === 'next') {
-          SliderDom.appendChild(SliderItemsDom[0]);
-          thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-          carouselDom.classList.add('next');
-        } else {
-          SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
-          thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
-          carouselDom.classList.add('prev');
-        }
-
-        clearTimeout(runTimeOut);
-        runTimeOut = setTimeout(() => {
-          carouselDom.classList.remove('next');
-          carouselDom.classList.remove('prev');
-        }, timeRunning);
-
-        clearTimeout(runNextAuto);
-        runNextAuto = setTimeout(() => {
-          nextDom.click();
-        }, timeAutoNext);
-
-        updateActiveThumbnail();
-      }
-
-      function updateActiveThumbnail() {
-        let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
-        thumbnailItemsDom.forEach((item, index) => {
-          item.classList.remove('active');
-          if (index === 0) {
-            item.classList.add('active');
-          }
-        });
-      }
-
-      thumbnailItemsDom.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('click', function() {
-          let currentActiveIndex = Array.from(thumbnailItemsDom).findIndex(item => item.classList.contains('active'));
-
-          if (index !== currentActiveIndex) {
-            thumbnailItemsDom.forEach(item => {
-              item.classList.remove('active');
-            });
-
-            this.classList.add('active');
-
-            let SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
-
-            let moveCount = (index - currentActiveIndex + thumbnailItemsDom.length) % thumbnailItemsDom.length;
-
-            for (let i = 0; i < moveCount; i++) {
-              let firstSlide = SliderItemsDom[0];
-              let firstThumbnail = thumbnailItemsDom[0];
-
-              SliderDom.removeChild(firstSlide);
-              thumbnailBorderDom.removeChild(firstThumbnail);
-
-              SliderDom.appendChild(firstSlide);
-              thumbnailBorderDom.appendChild(firstThumbnail);
-            }
-
-            updateSlideContent();
-
-            carouselDom.classList.add('next');
-            setTimeout(() => {
-              carouselDom.classList.remove('next');
-            }, timeRunning);
-
-            clearTimeout(runNextAuto);
-            runNextAuto = setTimeout(() => {
-              nextDom.click();
-            }, timeAutoNext);
-          }
-        });
-      });
-
-      function updateSlideContent() {
-        let activeThumbnail = document.querySelector('.thumbnail .item.active');
-        let firstSlide = document.querySelector('.list .item:first-child');
-
-        if (activeThumbnail && firstSlide) {
-          let thumbnailTitle = activeThumbnail.querySelector('.title').textContent;
-          let thumbnailDesc = activeThumbnail.querySelector('.description').textContent;
-          let thumbnailImg = activeThumbnail.querySelector('img').src;
-
-          firstSlide.querySelector('.title').textContent = thumbnailTitle;
-          firstSlide.querySelector('.des').textContent = thumbnailDesc;
-          firstSlide.querySelector('img').src = thumbnailImg;
-        }
-      }
-
-      nextDom.onclick = function() {
-        showSlider('next');
-      }
-
-      prevDom.onclick = function() {
-        showSlider('prev');
-      }
-
-      thumbnailItemsDom[0].classList.add('active');
-    </script>
-  </body>
+</body>
 </html>
