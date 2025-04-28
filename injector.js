@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   const protectedBody = document.getElementById('protected-body');
   if (protectedBody) {
-    protectedBody.removeAttribute('hidden');
+    protectedBody.style.visibility = 'visible';
+    protectedBody.style.opacity = '1';
   }
 });
